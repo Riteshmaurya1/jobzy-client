@@ -119,6 +119,13 @@ export function Features() {
                     transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
                     className="text-center mb-4"
                 >
+                    <div className={`inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider mb-8 ${theme === "dark" ? "bg-neutral-800 text-gray-300" : "bg-white border border-gray-200 text-gray-600 shadow-sm"}`}>
+                        <span className="relative flex h-2 w-2">
+                            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
+                            <span className="relative inline-flex rounded-full h-2 w-2 bg-red-500"></span>
+                        </span>
+                        Powerful Capabilities
+                    </div>
                     <h2 className={`text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 font-display ${theme === 'dark' ? 'text-white' : 'text-gray-900'
                         }`}>
                         Everything you need to manage your job search

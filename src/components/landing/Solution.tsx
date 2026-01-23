@@ -110,8 +110,8 @@ export function Solution() {
                     {/* Right Column - Dashboard Visual (Wobble Card) */}
                     <div className="hidden lg:block relative">
                         <WobbleCard containerClassName={`shadow-2xl ${theme === 'dark'
-                                ? 'bg-gradient-to-br from-violet-900/50 to-black border-violet-500/20'
-                                : 'bg-gradient-to-br from-violet-100 to-white border-violet-200'
+                            ? 'bg-gradient-to-br from-violet-900/50 to-black border-violet-500/20'
+                            : 'bg-gradient-to-br from-violet-100 to-white border-violet-200'
                             }`}>
                             {/* Stats Cards */}
                             <div className="grid grid-cols-3 gap-4 mb-6 relative z-10">
@@ -121,8 +121,8 @@ export function Solution() {
                                     { label: "Offers", value: "2", color: "green" },
                                 ].map((stat, idx) => (
                                     <div key={idx} className={`p-4 rounded-lg border ${theme === 'dark'
-                                            ? 'bg-gray-900/80 border-gray-800'
-                                            : 'bg-white border-violet-200'
+                                        ? 'bg-gray-900/80 border-gray-800'
+                                        : 'bg-white border-violet-200'
                                         }`}>
                                         <div className={`text-2xl font-bold mb-1
                       ${stat.color === 'violet' ? 'text-violet-500' : ''}
@@ -149,8 +149,8 @@ export function Solution() {
                                     <div
                                         key={idx}
                                         className={`flex items-center justify-between p-3 rounded-lg border ${theme === 'dark'
-                                                ? 'bg-gray-900/60 border-gray-800/50'
-                                                : 'bg-white border-violet-200'
+                                            ? 'bg-gray-900/60 border-gray-800/50'
+                                            : 'bg-white border-violet-200'
                                             }`}
                                     >
                                         <div className="flex items-center gap-3">

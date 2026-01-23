@@ -11,7 +11,7 @@ export function BuilderStory() {
     const storyText = "No fancy office. No fancy setup. Just a solo developer who faced this problem during job hunting and decided to build a simple solution. JobZy isn't backed by investors or built by a big team. It's a real tool, built by someone who needed it, for others facing the same struggle. I've been there — applying to hundreds of jobs, losing track, missing opportunities. I built JobZy for me first. Now I'm sharing it with you."
 
     return (
-        <section className={`relative py-24 px-6 border-t transition-colors ${theme === 'dark'
+        <section className={`relative py-24 px-6 transition-colors ${theme === 'dark'
             ? 'bg-black border-gray-900'
             : 'bg-[#FFFBF0] border-violet-100'
             }`}>
@@ -29,10 +29,14 @@ export function BuilderStory() {
                         whileInView={{ opacity: 1, scale: 1 }}
                         transition={{ duration: 0.5 }}
                         viewport={{ once: true }}
-                        className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-violet-500/10 border border-violet-500/20 mb-8"
-                    >
-                        <div className="w-6 h-6 rounded-full bg-gradient-to-br from-violet-500 to-orange-500" />
-                        <span className="text-xs font-semibold text-violet-500 uppercase tracking-widest">Builder Story</span>
+                        className={`inline-flex items-center uppercase gap-2 px-4 py-1.5 rounded-full text-xs font-semibold tracking-wider mb-6 
+                        ${theme === "dark" ? "bg-neutral-800 text-gray-300" : "bg-white border border-gray-200 text-gray-600 shadow-sm"}`
+                        }>
+                        <span className="relative flex h-2 w-2">
+                            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
+                            <span className="relative inline-flex rounded-full h-2 w-2 bg-red-500"></span>
+                        </span>
+                        Builder Story
                     </motion.div>
 
                     {/* Story Content - Using TextGenerateEffect */}

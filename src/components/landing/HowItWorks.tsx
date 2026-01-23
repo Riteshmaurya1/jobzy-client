@@ -57,9 +57,9 @@ export function HowItWorks() {
                     transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
                     className="text-center mb-20"
                 >
-                    <div className={`inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium mb-6 ${theme === 'dark'
-                        ? 'bg-violet-500/10 text-violet-400 border border-violet-500/20'
-                        : 'bg-violet-100 text-violet-600 border border-violet-200'
+                    <div className={`inline-flex items-center uppercase gap-2 px-4 py-1.5 rounded-full text-xs font-semibold tracking-wider mb-6 ${theme === 'dark'
+                        ? 'bg-neutral-800 text-gray-300'
+                        : 'bg-white border border-gray-200 text-gray-600 shadow-sm'
                         }`}>
                         <span className="relative flex h-2 w-2">
                             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-violet-400 opacity-75"></span>
