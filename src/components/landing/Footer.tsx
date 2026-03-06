@@ -3,6 +3,7 @@
 import { Instagram, Car } from "lucide-react"
 import { useTheme } from "@/contexts/ThemeContext"
 import { motion } from "framer-motion"
+import Link from "next/link"
 import Image from "next/image"
 
 export function Footer() {
@@ -22,7 +23,7 @@ export function Footer() {
         ],
         company: [
             { name: "About", href: "#about" },
-            { name: "Privacy Policy", href: "#privacy" },
+            { name: "Privacy Policy", href: "/privacy-policy" },
             { name: "Terms", href: "#terms" },
         ]
     }
@@ -68,11 +69,11 @@ export function Footer() {
                                 <ul className="space-y-4">
                                     {section.items.map((link, i) => (
                                         <li key={i}>
-                                            <a href={link.href} className={`transition-colors
+                                            <Link href={link.href} className={`transition-colors
                                                 ${theme === 'dark' ? 'text-neutral-500 hover:text-white' : 'text-gray-500 hover:text-violet-600'}
                                             `}>
                                                 {link.name}
-                                            </a>
+                                            </Link>
                                         </li>
                                     ))}
                                 </ul>

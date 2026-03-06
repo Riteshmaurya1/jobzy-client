@@ -47,7 +47,7 @@ export default function Home() {
       {/* 10. FAQ Section */}
       <FAQ />
 
-      {/* 10. Footer Section */}
+      {/* 11. Footer Section */}
       <Footer />
     </main>
   )

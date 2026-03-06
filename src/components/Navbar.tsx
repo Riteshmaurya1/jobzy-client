@@ -2,8 +2,9 @@
 
 import { useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
-import { Button } from "@/components/ui/button"
+import { Button, buttonVariants } from "@/components/ui/button"
 import Image from "next/image"
+import Link from "next/link"
 import { useTheme } from "@/contexts/ThemeContext"
 import {
   ChevronDown,
@@ -147,9 +148,9 @@ export function Navbar() {
 
           {/* Right Side Actions */}
           <div className="flex items-center gap-4">
-            <a href="#" className={`hidden sm:block text-sm font-medium transition-colors hover:scale-105 ${theme === 'dark' ? 'text-gray-300 hover:text-white' : 'text-gray-600 hover:text-black'}`}>
+            <Link href="/signin" className={`hidden sm:block text-sm font-medium transition-colors hover:scale-105 ${theme === 'dark' ? 'text-gray-300 hover:text-white' : 'text-gray-600 hover:text-black'}`}>
               Log in
-            </a>
+            </Link>
 
             <a href="https://tr.ee/lZYoG2GxNR" target="_blank" rel="noopener noreferrer"
               className={`hidden sm:flex items-center px-6 py-2 rounded-full text-sm font-normal backdrop-blur-xl saturate-200 contrast-150 transition-all duration-300 border-2
@@ -213,9 +214,13 @@ export function Navbar() {
                   About
                 </a>
                 <div className="pt-2">
-                  <Button variant="ghost" className="w-full justify-start pl-4" onClick={() => setMobileMenuOpen(false)}>
+                  <Link
+                    href="/signin"
+                    className={buttonVariants({ variant: "ghost", className: "w-full justify-start pl-4" })}
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
                     Log in
-                  </Button>
+                  </Link>
                   <a
                     href="https://tr.ee/lZYoG2GxNR"
                     target="_blank"

@@ -3,10 +3,54 @@
 import { motion } from "framer-motion"
 import { BarChart3, CheckCircle2, Calendar, FileText } from "lucide-react"
 import { useTheme } from "@/contexts/ThemeContext"
-import { WobbleCard } from "@/components/ui/wobble-card"
+import { JobCard } from "@/components/dashboard/jobs/JobCard"
+import { Job } from "@/services/jobsService"
 
 export function Solution() {
     const { theme } = useTheme()
+
+    const mockJobs: Job[] = [
+        {
+            id: "1",
+            company: "Stripe",
+            position: "Frontend Engineer",
+            jobLink: "",
+            location: "San Francisco, CA",
+            workMode: "hybrid",
+            jobType: "full-time",
+            salary: "$160k - $210k",
+            status: "offer",
+            appliedDate: new Date().toISOString(),
+            platform: "LinkedIn"
+        },
+        {
+            id: "2",
+            company: "Vercel",
+            position: "Product Designer",
+            jobLink: "",
+            location: "Remote",
+            workMode: "remote",
+            jobType: "full-time",
+            salary: "$140k - $190k",
+            status: "interview-scheduled",
+            appliedDate: new Date(Date.now() - 86400000 * 2).toISOString(),
+            platform: "Wellfound"
+        },
+        {
+            id: "3",
+            company: "Linear",
+            position: "Software Engineer",
+            jobLink: "",
+            location: "New York, NY",
+            workMode: "onsite",
+            jobType: "full-time",
+            salary: "$150k - $200k",
+            status: "applied",
+            appliedDate: new Date(Date.now() - 86400000 * 5).toISOString(),
+            platform: "Referral"
+        }
+    ]
+
     const solutions = [
         {
             icon: BarChart3,
@@ -107,70 +151,15 @@ export function Solution() {
                         </div>
                     </motion.div>
 
-                    {/* Right Column - Dashboard Visual (Wobble Card) */}
-                    <div className="hidden lg:block relative">
-                        <WobbleCard containerClassName={`shadow-2xl ${theme === 'dark'
-                            ? 'bg-gradient-to-br from-violet-900/50 to-black border-violet-500/20'
-                            : 'bg-gradient-to-br from-violet-100 to-white border-violet-200'
-                            }`}>
-                            {/* Stats Cards */}
-                            <div className="grid grid-cols-3 gap-4 mb-6 relative z-10">
-                                {[
-                                    { label: "Total Apps", value: "42", color: "violet" },
-                                    { label: "Interviews", value: "8", color: "orange" },
-                                    { label: "Offers", value: "2", color: "green" },
-                                ].map((stat, idx) => (
-                                    <div key={idx} className={`p-4 rounded-lg border ${theme === 'dark'
-                                        ? 'bg-gray-900/80 border-gray-800'
-                                        : 'bg-white border-violet-200'
-                                        }`}>
-                                        <div className={`text-2xl font-bold mb-1
-                      ${stat.color === 'violet' ? 'text-violet-500' : ''}
-                      ${stat.color === 'orange' ? 'text-orange-500' : ''}
-                      ${stat.color === 'green' ? 'text-green-500' : ''}
-                    `}>
-                                            {stat.value}
-                                        </div>
-                                        <div className={`text-xs ${theme === 'dark' ? 'text-gray-400' : 'text-gray-600'
-                                            }`}>{stat.label}</div>
-                                    </div>
-                                ))}
-                            </div>
-
-                            {/* Application List Preview */}
-                            <div className="space-y-3 relative z-10">
-                                <div className={`text-sm font-semibold mb-2 ${theme === 'dark' ? 'text-gray-400' : 'text-gray-600'
-                                    }`}>Recent Activity</div>
-                                {[
-                                    { company: "Stripe", status: "Offered", statusColor: "green" },
-                                    { company: "Vercel", status: "Interviewing", statusColor: "orange" },
-                                    { company: "Linear", status: "Applied", statusColor: "blue" },
-                                ].map((app, idx) => (
-                                    <div
-                                        key={idx}
-                                        className={`flex items-center justify-between p-3 rounded-lg border ${theme === 'dark'
-                                            ? 'bg-gray-900/60 border-gray-800/50'
-                                            : 'bg-white border-violet-200'
-                                            }`}
-                                    >
-                                        <div className="flex items-center gap-3">
-                                            <div className="w-8 h-8 rounded bg-violet-500/10 flex items-center justify-center text-violet-500 text-xs font-bold">
-                                                {app.company[0]}
-                                            </div>
-                                            <span className={`text-sm font-medium ${theme === 'dark' ? 'text-white' : 'text-gray-900'
-                                                }`}>{app.company}</span>
-                                        </div>
-                                        <div className={`px-2 py-1 rounded text-xs font-semibold
-                      ${app.statusColor === 'green' ? 'bg-green-500/20 text-green-500' : ''}
-                      ${app.statusColor === 'orange' ? 'bg-orange-500/20 text-orange-500' : ''}
-                      ${app.statusColor === 'blue' ? 'bg-blue-500/20 text-blue-500' : ''}
-                    `}>
-                                            {app.status}
-                                        </div>
-                                    </div>
-                                ))}
-                            </div>
-                        </WobbleCard>
+                    <div className="hidden lg:block relative space-y-4">
+                        {mockJobs.map((job) => (
+                            <JobCard
+                                key={job.id}
+                                job={job}
+                                onEdit={() => { }}
+                                onDelete={() => { }}
+                            />
+                        ))}
                     </div>
 
                 </div>

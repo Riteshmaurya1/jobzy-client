@@ -10,12 +10,14 @@ const buttonVariants = cva(
         default: "bg-gradient-to-r from-orange-500 to-orange-600 text-white shadow-lg shadow-orange-500/50 hover:shadow-xl hover:shadow-orange-500/60 hover:scale-105 active:scale-98",
         secondary: "border-2 border-violet-500/50 text-violet-400 bg-transparent hover:bg-gray-900/50 hover:border-violet-400 backdrop-blur-sm",
         ghost: "hover:bg-gray-900/50 text-violet-400 backdrop-blur-sm",
-        outline: "border-2 border-gray-800 text-white hover:bg-gray-900 hover:border-violet-500/30",
+        outline: "border-2 border-neutral-200 dark:border-gray-800 text-neutral-900 dark:text-white hover:bg-neutral-100 dark:hover:bg-gray-900 hover:border-violet-500/30",
+        destructive: "bg-red-500 text-white hover:bg-red-600",
       },
       size: {
         default: "h-11 px-6 py-2",
         lg: "h-14 px-8 text-lg font-semibold",
         sm: "h-9 px-4 text-sm",
+        icon: "h-10 w-10",
       },
     },
     defaultVariants: {
