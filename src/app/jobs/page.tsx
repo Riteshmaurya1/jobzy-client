@@ -119,7 +119,8 @@ export default function JobsPage() {
     // Interview creation handler
     const handleCreateInterview = async (data: any) => {
         try {
-            const response = await interviewsService.create(data)
+            const { jobId, ...interviewData } = data
+            const response = await interviewsService.create(jobId, interviewData)
             if (response.success) {
                 toast({ title: "Success", description: "Interview scheduled successfully" })
                 setIsInterviewModalOpen(false)
