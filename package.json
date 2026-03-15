@@ -16,6 +16,7 @@
     "@radix-ui/react-label": "^2.1.8",
     "@radix-ui/react-switch": "^1.2.6",
     "@radix-ui/react-toast": "^1.2.15",
+    "@vercel/analytics": "^2.0.1",
     "aceternity-ui": "^0.2.2",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",

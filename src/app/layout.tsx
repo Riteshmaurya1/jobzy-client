@@ -4,6 +4,7 @@ import "./globals.css";
 import { ThemeProvider } from "@/contexts/ThemeContext";
 import { AuthProvider } from "@/contexts/AuthContext";
 import { Toaster } from "@/components/ui/toaster";
+import { Analytics } from "@vercel/analytics/react";
 
 const outfit = Outfit({
   variable: "--font-display",
@@ -88,6 +89,7 @@ export default function RootLayout({
             <Toaster />
           </ThemeProvider>
         </AuthProvider>
+        <Analytics />
       </body>
     </html>
   );
