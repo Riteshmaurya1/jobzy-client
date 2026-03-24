@@ -8,10 +8,10 @@ import { PipelineOverview } from "@/components/dashboard/PipelineOverview"
 import { UpcomingInterviews } from "@/components/dashboard/UpcomingInterviews"
 import { TopCompanies } from "@/components/dashboard/TopCompanies"
 import { JobBreakdown } from "@/components/dashboard/JobBreakdown"
-import { MonthlyApplications } from "@/components/dashboard/MoFnthlyApplications"
+import { MonthlyApplications } from "@/components/dashboard/MonthlyApplications"
 import { fetchApi } from "@/lib/apiClient";
 
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:4000/api/v1";
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || "http://65.2.83.236/api/v1";
 
 export default function DashboardPage() {
     const [data, setData] = useState<any>(null)
