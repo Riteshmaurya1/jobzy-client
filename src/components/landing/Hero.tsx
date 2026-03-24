@@ -10,9 +10,9 @@ export function Hero() {
     const { theme } = useTheme()
 
     const stats = [
-        { value: "50+", label: "active job seekers", icon: Users },
-        { value: "~2k", label: "applications tracked", icon: BarChart3 },
-        { value: "94%", label: "report better visibility", icon: TrendingUp },
+        { value: "76+", label: "active job seekers", icon: Users },
+        { value: "~6k", label: "applications tracked", icon: BarChart3 },
+        { value: "91%", label: "report better visibility", icon: TrendingUp },
     ]
 
     return (

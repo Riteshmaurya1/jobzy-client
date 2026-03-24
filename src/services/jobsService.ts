@@ -1,4 +1,5 @@
 import { format } from "date-fns";
+import { fetchApi } from "@/lib/apiClient";
 
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:4000/api/v1";
 
@@ -60,7 +61,7 @@ export const jobsService = {
 
         // Use advanced search if date filters are present
         if (filters.dateFrom || filters.dateTo) {
-            const res = await fetch(`${API_BASE_URL}/jobs/search/advanced?page=${page}&limit=${limit}`, {
+            const res = await fetchApi(`${API_BASE_URL}/jobs/search/advanced?page=${page}&limit=${limit}`, {
                 method: "POST",
                 headers: getHeaders(),
                 body: JSON.stringify({
@@ -71,21 +72,21 @@ export const jobsService = {
             return res.json();
         }
 
-        const res = await fetch(`${API_BASE_URL}/jobs?${params.toString()}`, {
+        const res = await fetchApi(`${API_BASE_URL}/jobs?${params.toString()}`, {
             headers: getHeaders()
         });
         return res.json();
     },
 
     getStats: async () => {
-        const res = await fetch(`${API_BASE_URL}/jobs/stats`, {
+        const res = await fetchApi(`${API_BASE_URL}/jobs/stats`, {
             headers: getHeaders()
         });
         return res.json();
     },
 
     create: async (data: Partial<Job>) => {
-        const res = await fetch(`${API_BASE_URL}/jobs/create`, {
+        const res = await fetchApi(`${API_BASE_URL}/jobs/create`, {
             method: "POST",
             headers: getHeaders(),
             body: JSON.stringify(data)
@@ -94,7 +95,7 @@ export const jobsService = {
     },
 
     update: async (id: string, data: Partial<Job>) => {
-        const res = await fetch(`${API_BASE_URL}/jobs/${id}`, {
+        const res = await fetchApi(`${API_BASE_URL}/jobs/${id}`, {
             method: "PUT",
             headers: getHeaders(),
             body: JSON.stringify(data)
@@ -103,7 +104,7 @@ export const jobsService = {
     },
 
     delete: async (id: string) => {
-        const res = await fetch(`${API_BASE_URL}/jobs/${id}`, {
+        const res = await fetchApi(`${API_BASE_URL}/jobs/${id}`, {
             method: "DELETE",
             headers: getHeaders()
         });
@@ -113,14 +114,14 @@ export const jobsService = {
     },
 
     getById: async (id: string) => {
-        const res = await fetch(`${API_BASE_URL}/jobs/${id}`, {
+        const res = await fetchApi(`${API_BASE_URL}/jobs/${id}`, {
             headers: getHeaders()
         });
         return res.json();
     },
 
     exportCSV: async () => {
-        const res = await fetch(`${API_BASE_URL}/jobs/export/csv`, {
+        const res = await fetchApi(`${API_BASE_URL}/jobs/export/csv`, {
             headers: getHeaders()
         });
         const blob = await res.blob();

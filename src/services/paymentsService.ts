@@ -1,3 +1,4 @@
+import { fetchApi } from "@/lib/apiClient";
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:4000/api/v1";
 
 export interface Subscription {
@@ -39,7 +40,7 @@ const getHeaders = () => {
 export const paymentsService = {
     // Get current subscription status
     getSubscription: async () => {
-        const res = await fetch(`${API_BASE_URL}/payments/subscription`, {
+        const res = await fetchApi(`${API_BASE_URL}/payments/subscription`, {
             headers: getHeaders()
         });
         return res.json();
@@ -47,7 +48,7 @@ export const paymentsService = {
 
     // Get payment history
     getHistory: async () => {
-        const res = await fetch(`${API_BASE_URL}/payments/history`, {
+        const res = await fetchApi(`${API_BASE_URL}/payments/history`, {
             headers: getHeaders()
         });
         return res.json();
@@ -55,7 +56,7 @@ export const paymentsService = {
 
     // Get payment by ID
     getById: async (paymentId: string) => {
-        const res = await fetch(`${API_BASE_URL}/payments/${paymentId}`, {
+        const res = await fetchApi(`${API_BASE_URL}/payments/${paymentId}`, {
             headers: getHeaders()
         });
         return res.json();
@@ -63,7 +64,7 @@ export const paymentsService = {
 
     // Create a Razorpay order
     createOrder: async (planType: string, planDuration: string) => {
-        const res = await fetch(`${API_BASE_URL}/payments/create-order`, {
+        const res = await fetchApi(`${API_BASE_URL}/payments/create-order`, {
             method: "POST",
             headers: getHeaders(),
             body: JSON.stringify({ planType, planDuration })
@@ -78,7 +79,7 @@ export const paymentsService = {
         razorpay_signature: string;
         method?: string;
     }) => {
-        const res = await fetch(`${API_BASE_URL}/payments/verify`, {
+        const res = await fetchApi(`${API_BASE_URL}/payments/verify`, {
             method: "POST",
             headers: getHeaders(),
             body: JSON.stringify(data)

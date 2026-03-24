@@ -1,3 +1,4 @@
+import { fetchApi } from "@/lib/apiClient";
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:4000/api/v1";
 
 export interface Document {
@@ -43,7 +44,7 @@ const getAuthHeader = () => {
 export const documentsService = {
     /** GET /documents — list all documents */
     getAll: async () => {
-        const res = await fetch(`${API_BASE_URL}/documents`, {
+        const res = await fetchApi(`${API_BASE_URL}/documents`, {
             headers: getHeaders()
         });
         return res.json();
@@ -51,7 +52,7 @@ export const documentsService = {
 
     /** GET /documents/:id — get single document with full ATS analysis */
     getById: async (id: string) => {
-        const res = await fetch(`${API_BASE_URL}/documents/${id}`, {
+        const res = await fetchApi(`${API_BASE_URL}/documents/${id}`, {
             headers: getHeaders()
         });
         return res.json();
@@ -59,7 +60,7 @@ export const documentsService = {
 
     /** GET /documents/:id/download-url — get S3 signed download URL */
     getDownloadUrl: async (id: string) => {
-        const res = await fetch(`${API_BASE_URL}/documents/${id}/download-url`, {
+        const res = await fetchApi(`${API_BASE_URL}/documents/${id}/download-url`, {
             headers: getHeaders()
         });
         return res.json();
@@ -67,7 +68,7 @@ export const documentsService = {
 
     /** GET /documents/stats/ats — get ATS stats summary */
     getATSStats: async () => {
-        const res = await fetch(`${API_BASE_URL}/documents/stats/ats`, {
+        const res = await fetchApi(`${API_BASE_URL}/documents/stats/ats`, {
             headers: getHeaders()
         });
         return res.json();
@@ -75,7 +76,7 @@ export const documentsService = {
 
     /** DELETE /documents/:id — delete a document */
     delete: async (id: string) => {
-        const res = await fetch(`${API_BASE_URL}/documents/${id}`, {
+        const res = await fetchApi(`${API_BASE_URL}/documents/${id}`, {
             method: "DELETE",
             headers: getHeaders()
         });

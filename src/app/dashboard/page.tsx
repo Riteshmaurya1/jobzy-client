@@ -8,7 +8,8 @@ import { PipelineOverview } from "@/components/dashboard/PipelineOverview"
 import { UpcomingInterviews } from "@/components/dashboard/UpcomingInterviews"
 import { TopCompanies } from "@/components/dashboard/TopCompanies"
 import { JobBreakdown } from "@/components/dashboard/JobBreakdown"
-import { MonthlyApplications } from "@/components/dashboard/MonthlyApplications"
+import { MonthlyApplications } from "@/components/dashboard/MoFnthlyApplications"
+import { fetchApi } from "@/lib/apiClient";
 
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:4000/api/v1";
 
@@ -27,10 +28,10 @@ export default function DashboardPage() {
                 }
 
                 const [dashboardRes, upcomingRes] = await Promise.all([
-                    fetch(`${API_BASE_URL}/dashboard`, {
+                    fetchApi(`${API_BASE_URL}/dashboard`, {
                         headers: { 'Authorization': `Bearer ${token}` }
                     }),
-                    fetch(`${API_BASE_URL}/interviews/upcoming`, {
+                    fetchApi(`${API_BASE_URL}/interviews/upcoming`, {
                         headers: { 'Authorization': `Bearer ${token}` }
                     })
                 ]);

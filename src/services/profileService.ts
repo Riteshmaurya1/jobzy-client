@@ -1,3 +1,4 @@
+import { fetchApi } from "@/lib/apiClient";
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:4000/api/v1";
 
 export interface Profile {
@@ -32,7 +33,7 @@ const getHeaders = () => {
 export const profileService = {
     /** GET /api/v1/user/profile */
     getProfile: async (): Promise<{ success: boolean; profile: Profile }> => {
-        const res = await fetch(`${API_BASE_URL}/user/profile`, {
+        const res = await fetchApi(`${API_BASE_URL}/user/profile`, {
             headers: getHeaders()
         });
         return res.json();
@@ -40,7 +41,7 @@ export const profileService = {
 
     /** PUT /api/v1/user/profile */
     updateProfile: async (data: { name: string; phoneNumber: string }): Promise<{ success: boolean; message: string; updatedData: any }> => {
-        const res = await fetch(`${API_BASE_URL}/user/profile`, {
+        const res = await fetchApi(`${API_BASE_URL}/user/profile`, {
             method: "PUT",
             headers: getHeaders(),
             body: JSON.stringify(data)
@@ -50,7 +51,7 @@ export const profileService = {
 
     /** PATCH /api/v1/user/profile/password */
     changePassword: async (data: { currentPassword: string; newPassword: string }): Promise<{ success: boolean; message?: string }> => {
-        const res = await fetch(`${API_BASE_URL}/user/profile/password`, {
+        const res = await fetchApi(`${API_BASE_URL}/user/profile/password`, {
             method: "PATCH",
             headers: getHeaders(),
             body: JSON.stringify(data)

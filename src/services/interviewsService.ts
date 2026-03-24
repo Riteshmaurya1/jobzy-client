@@ -1,6 +1,7 @@
 import { format } from "date-fns";
 import { Job } from "./jobsService";
 
+import { fetchApi } from "@/lib/apiClient";
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:4000/api/v1";
 
 export interface Interview {
@@ -54,35 +55,35 @@ export const interviewsService = {
         params.append("page", page.toString());
         params.append("limit", limit.toString());
 
-        const res = await fetch(`${API_BASE_URL}/interviews?${params.toString()}`, {
+        const res = await fetchApi(`${API_BASE_URL}/interviews?${params.toString()}`, {
             headers: getHeaders()
         });
         return res.json();
     },
 
     getUpcoming: async () => {
-        const res = await fetch(`${API_BASE_URL}/interviews/upcoming`, {
+        const res = await fetchApi(`${API_BASE_URL}/interviews/upcoming`, {
             headers: getHeaders()
         });
         return res.json();
     },
 
     getForJob: async (jobId: string) => {
-        const res = await fetch(`${API_BASE_URL}/jobs/${jobId}/interviews`, {
+        const res = await fetchApi(`${API_BASE_URL}/jobs/${jobId}/interviews`, {
             headers: getHeaders()
         });
         return res.json();
     },
 
     getById: async (id: string) => {
-        const res = await fetch(`${API_BASE_URL}/interviews/${id}`, {
+        const res = await fetchApi(`${API_BASE_URL}/interviews/${id}`, {
             headers: getHeaders()
         });
         return res.json();
     },
 
     create: async (jobId: string, data: Partial<Interview>) => {
-        const res = await fetch(`${API_BASE_URL}/jobs/${jobId}/interviews`, {
+        const res = await fetchApi(`${API_BASE_URL}/jobs/${jobId}/interviews`, {
             method: "POST",
             headers: getHeaders(),
             body: JSON.stringify(data)
@@ -91,7 +92,7 @@ export const interviewsService = {
     },
 
     update: async (id: string, data: Partial<Interview>) => {
-        const res = await fetch(`${API_BASE_URL}/interviews/${id}`, {
+        const res = await fetchApi(`${API_BASE_URL}/interviews/${id}`, {
             method: "PUT",
             headers: getHeaders(),
             body: JSON.stringify(data)
@@ -100,7 +101,7 @@ export const interviewsService = {
     },
 
     delete: async (id: string) => {
-        const res = await fetch(`${API_BASE_URL}/interviews/${id}`, {
+        const res = await fetchApi(`${API_BASE_URL}/interviews/${id}`, {
             method: "DELETE",
             headers: getHeaders()
         });

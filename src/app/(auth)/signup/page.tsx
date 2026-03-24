@@ -7,6 +7,7 @@ import { useAuth } from "@/contexts/AuthContext";
 import { motion } from "framer-motion";
 import { Eye, EyeOff, Lock, Mail, User, Phone, Briefcase, Target, ArrowRight, Loader2, Sparkles } from "lucide-react";
 import { div } from "framer-motion/client";
+import { useToast } from "@/components/ui/use-toast";
 
 export default function SignupPage() {
     const [formData, setFormData] = useState({
@@ -19,7 +20,7 @@ export default function SignupPage() {
         primaryRole: ""
     });
     const { signUp, loading } = useAuth();
-    const [error, setError] = useState<string | null>(null);
+    const { toast } = useToast();
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [showPassword, setShowPassword] = useState(false);
 
@@ -33,14 +34,17 @@ export default function SignupPage() {
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         setIsSubmitting(true);
-        setError(null);
         try {
             await signUp({
                 ...formData,
                 phoneNumber: Number(formData.phoneNumber.replace(/[^0-9]/g, ''))
             });
         } catch (err: any) {
-            setError(err instanceof Error ? err.message : "An unexpected error occurred");
+            toast({
+                title: "Sign up failed",
+                description: err instanceof Error ? err.message : "An unexpected error occurred",
+                variant: "destructive",
+            });
         } finally {
             setIsSubmitting(false);
         }
@@ -120,17 +124,6 @@ export default function SignupPage() {
                         </motion.div>
 
                         <form onSubmit={handleSubmit} className="space-y-3">
-                            {error && (
-                                <motion.div
-                                    initial={{ opacity: 0, height: 0 }}
-                                    animate={{ opacity: 1, height: "auto" }}
-                                    className="p-3 rounded-lg bg-red-50 border border-red-100 text-red-600 text-xs flex items-center gap-2 font-body"
-                                >
-                                    <span className="w-1.5 h-1.5 rounded-full bg-red-500 flex-shrink-0" />
-                                    {error}
-                                </motion.div>
-                            )}
-
                             <div className="grid grid-cols-2 gap-3">
                                 <InputField
                                     id="name"

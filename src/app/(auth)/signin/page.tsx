@@ -6,23 +6,27 @@ import Link from "next/link";
 import { useAuth } from "@/contexts/AuthContext";
 import { motion } from "framer-motion";
 import { Eye, EyeOff, Mail, ArrowRight, Loader2, CheckCircle2, Sparkles } from "lucide-react";
+import { useToast } from "@/components/ui/use-toast";
 
 export default function SigninPage() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [showPassword, setShowPassword] = useState(false);
     const { signIn } = useAuth();
-    const [error, setError] = useState<string | null>(null);
+    const { toast } = useToast();
     const [isSubmitting, setIsSubmitting] = useState(false);
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         setIsSubmitting(true);
-        setError(null);
         try {
             await signIn({ email, password });
         } catch (err: any) {
-            setError(err instanceof Error ? err.message : "An unexpected error occurred");
+            toast({
+                title: "Sign in failed",
+                description: err instanceof Error ? err.message : "An unexpected error occurred",
+                variant: "destructive",
+            });
         } finally {
             setIsSubmitting(false);
         }
@@ -122,17 +126,6 @@ export default function SigninPage() {
                         </motion.div>
 
                         <form onSubmit={handleSubmit} className="space-y-5">
-                            {error && (
-                                <motion.div
-                                    initial={{ opacity: 0, height: 0 }}
-                                    animate={{ opacity: 1, height: "auto" }}
-                                    className="p-4 rounded-xl bg-red-50 border border-red-100 text-red-600 text-sm flex items-center gap-2 font-body"
-                                >
-                                    <span className="w-1.5 h-1.5 rounded-full bg-red-500 flex-shrink-0" />
-                                    {error}
-                                </motion.div>
-                            )}
-
                             <div className="space-y-5">
                                 <motion.div
                                     initial={{ opacity: 0, y: 10 }}

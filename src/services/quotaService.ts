@@ -1,5 +1,6 @@
 import { Quota } from "./interviewsService";
 
+import { fetchApi } from "@/lib/apiClient";
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:4000/api/v1";
 
 const getHeaders = () => {
@@ -39,7 +40,7 @@ export const quotaService = {
 
     /** GET /api/v1/jobs/quota */
     getJobsQuota: async (): Promise<Quota | null> => {
-        const res = await fetch(`${API_BASE_URL}/jobs/quota`, {
+        const res = await fetchApi(`${API_BASE_URL}/jobs/quota`, {
             headers: getHeaders()
         });
         const data = await res.json();
@@ -48,7 +49,7 @@ export const quotaService = {
 
     /** GET /api/v1/interviews — extract quota from list response */
     getInterviewsQuota: async (): Promise<Quota | null> => {
-        const res = await fetch(`${API_BASE_URL}/interviews`, {
+        const res = await fetchApi(`${API_BASE_URL}/interviews`, {
             headers: getHeaders()
         });
         const data = await res.json();
@@ -57,7 +58,7 @@ export const quotaService = {
 
     /** GET /api/v1/ats/usage — map different response format to Quota */
     getAtsQuota: async (): Promise<Quota | null> => {
-        const res = await fetch(`${API_BASE_URL}/ats/usage`, {
+        const res = await fetchApi(`${API_BASE_URL}/ats/usage`, {
             headers: getHeaders()
         });
         const data = await res.json();
