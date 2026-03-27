@@ -8,9 +8,13 @@ import { toast } from "@/components/ui/use-toast";
  * 
  * It then returns the original `Response` object so the calling code behaves normally.
  */
-export async function fetchApi(input: RequestInfo | URL, init?: RequestInit): Promise<Response> {
+export async function fetchApi(input: RequestInfo | URL, init: RequestInit = {}): Promise<Response> {
     try {
-        const response = await fetch(input, init);
+        const fetchOptions: RequestInit = {
+            credentials: "include", // Required for CORS when the backend expects it
+            ...init,
+        };
+        const response = await fetch(input, fetchOptions);
 
         if (!response.ok) {
             // Clone the response so we can read the body without consuming the stream 
