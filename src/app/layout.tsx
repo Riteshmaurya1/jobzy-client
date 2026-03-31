@@ -5,7 +5,7 @@ import { ThemeProvider } from "@/contexts/ThemeContext";
 import { AuthProvider } from "@/contexts/AuthContext";
 import { Toaster } from "@/components/ui/toaster";
 import { Analytics } from "@vercel/analytics/react";
-
+import { MobileSplashScreen } from "@/components/MobileSplashScreen";
 const outfit = Outfit({
   variable: "--font-display",
   subsets: ["latin"],
@@ -85,6 +85,7 @@ export default function RootLayout({
       >
         <AuthProvider>
           <ThemeProvider>
+            <MobileSplashScreen />
             {children}
             <Toaster />
           </ThemeProvider>
