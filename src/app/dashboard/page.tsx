@@ -11,7 +11,7 @@ import { JobBreakdown } from "@/components/dashboard/JobBreakdown"
 import { MonthlyApplications } from "@/components/dashboard/MonthlyApplications"
 import { fetchApi } from "@/lib/apiClient";
 
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || "http://65.2.83.236/api/v1";
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || "https://periodically-instrumental-permitted-scotia.trycloudflare.com/api/v1";
 
 export default function DashboardPage() {
     const [data, setData] = useState<any>(null)
