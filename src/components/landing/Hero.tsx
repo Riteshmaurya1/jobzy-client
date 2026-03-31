@@ -143,7 +143,7 @@ export function Hero() {
                         whileHover={{ scale: 1.02 }}
                         whileTap={{ scale: 0.98 }}
                     >
-                        <a href="https://www.instagram.com/jobzy.in/" target="_blank" rel="noopener noreferrer">
+                        <a href="https://www.instagram.com/jobzy.site/" target="_blank" rel="noopener noreferrer">
                             <Button
                                 size="default"
                                 variant="ghost"
